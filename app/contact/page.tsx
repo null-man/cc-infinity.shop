@@ -1,0 +1,99 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { MapPin, Phone, Mail, Clock } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Card, CardContent } from "@/components/ui/card"
+
+export default function ContactPage() {
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setFormSubmitted(true)
+  }
+
+  return (
+    <div className="container px-4 py-8 md:px-6 md:py-12">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
+        <div className="flex items-center text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-primary">Home</Link>
+          <span className="mx-2">/</span>
+          <span>Contact</span>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="md:col-span-2">
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
+              {formSubmitted ? (
+                <div className="bg-primary/10 text-primary p-4 rounded-lg mb-6">
+                  <h3 className="font-semibold text-lg mb-2">Thank You!</h3>
+                  <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2"><Label htmlFor="first-name">First Name</Label><Input id="first-name" placeholder="John" required /></div>
+                    <div className="space-y-2"><Label htmlFor="last-name">Last Name</Label><Input id="last-name" placeholder="Doe" required /></div>
+                  </div>
+                  <div className="space-y-2"><Label htmlFor="email">Email</Label><Input id="email" type="email" placeholder="john@example.com" required /></div>
+                  <div className="space-y-2"><Label htmlFor="phone">Phone (Optional)</Label><Input id="phone" type="tel" placeholder="(555) 123-4567" /></div>
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Subject</Label>
+                    <Select><SelectTrigger id="subject"><SelectValue placeholder="Select a subject" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="general">General Inquiry</SelectItem>
+                        <SelectItem value="order">Order Status</SelectItem>
+                        <SelectItem value="return">Returns & Refunds</SelectItem>
+                        <SelectItem value="product">Product Information</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2"><Label htmlFor="message">Message</Label><Textarea id="message" placeholder="How can we help you?" className="min-h-[150px]" required /></div>
+                  <Button type="submit" className="w-full sm:w-auto">Send Message</Button>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        <div>
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-6">Contact Information</h2>
+              <div className="space-y-6">
+                <div className="flex items-start gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><MapPin className="h-5 w-5" /></div>
+                  <div><h3 className="font-medium">Address</h3><address className="not-italic text-muted-foreground">123 Fashion Avenue<br />New York, NY 10001<br />United States</address></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Phone className="h-5 w-5" /></div>
+                  <div><h3 className="font-medium">Phone</h3><p className="text-muted-foreground"><a href="tel:+15551234567" className="hover:text-primary">(555) 123-4567</a></p><p className="text-muted-foreground"><a href="tel:+18005551234" className="hover:text-primary">1-800-555-1234</a></p></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Mail className="h-5 w-5" /></div>
+                  <div><h3 className="font-medium">Email</h3><p className="text-muted-foreground"><a href="mailto:hello@awesomeproducts-world.com" className="hover:text-primary">hello@awesomeproducts-world.com</a></p><p className="text-muted-foreground"><a href="mailto:support@awesomeproducts-world.com" className="hover:text-primary">support@awesomeproducts-world.com</a></p></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Clock className="h-5 w-5" /></div>
+                  <div><h3 className="font-medium">Business Hours</h3><p className="text-muted-foreground">Monday - Friday: 9am - 6pm</p><p className="text-muted-foreground">Saturday: 10am - 4pm</p><p className="text-muted-foreground">Sunday: Closed</p></div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+}
