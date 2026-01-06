@@ -14,24 +14,17 @@ export default function CartPage() {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: "Premium Dog Food",
-      image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
-      price: 39.99,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      name: "Comfortable Dog Bed",
-      image: "https://images.unsplash.com/photo-1541599468348-e96984315921?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      price: 69.99,
+      name: "Linen Sofa",
+      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop",
+      price: 1299,
       quantity: 1,
     },
     {
-      id: 3,
-      name: "Interactive Dog Toy",
-      image: "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      price: 19.99,
-      quantity: 3,
+      id: 2,
+      name: "Ceramic Vase Set",
+      image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400&auto=format&fit=crop",
+      price: 89,
+      quantity: 2,
     },
   ])
 

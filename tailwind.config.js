@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
         "2xl": "1400px",
       },
@@ -50,19 +50,6 @@ module.exports = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        // Red branding colors
-        brand: {
-          50: "#FFF5F5",
-          100: "#FFE3E3",
-          200: "#FFC9C9",
-          300: "#FFA8A8",
-          400: "#FF8787",
-          500: "#FF6B6B", // Primary brand color
-          600: "#FA5252",
-          700: "#F03E3E",
-          800: "#E03131",
-          900: "#C92A2A",
         },
       },
       borderRadius: {

@@ -2,94 +2,147 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ShoppingCart, Search, ChevronDown, Globe, User, Menu, X } from "lucide-react"
+import { ShoppingBag, Search, User, Menu, X, Heart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+
+  const navLinks = [
+    { href: "/shop", label: "Shop All" },
+    { href: "/category/living", label: "Living" },
+    { href: "/category/bedroom", label: "Bedroom" },
+    { href: "/category/kitchen", label: "Kitchen" },
+    { href: "/category/decor", label: "Decor" },
+    { href: "/about", label: "About" },
+  ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-6 md:gap-10">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">awesomeproducts-world</span>
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      {/* Top announcement bar */}
+      <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-wider">
+        FREE SHIPPING ON ORDERS OVER $150 | NEW ARRIVALS WEEKLY
+      </div>
+      
+      <div className="border-b">
+        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <span className="text-xl md:text-2xl font-light tracking-[0.15em] uppercase">
+              STREETWEARZONE
+            </span>
           </Link>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">Home</Link>
-            <Link href="/shop" className="text-sm font-medium transition-colors hover:text-primary">Shop</Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
-                Categories <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem><Link href="/category/women" className="w-full">Women</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/category/men" className="w-full">Men</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/category/accessories" className="w-full">Accessories</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/category/shoes" className="w-full">Shoes</Link></DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link href="/about" className="text-sm font-medium transition-colors hover:text-primary">About</Link>
-            <Link href="/contact" className="text-sm font-medium transition-colors hover:text-primary">Contact</Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
+
+          {/* Right icons */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSearchOpen(!searchOpen)}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="hidden sm:flex" asChild>
+              <Link href="/login">
+                <User className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon" className="hidden sm:flex">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="relative" asChild>
+              <Link href="/cart">
+                <ShoppingBag className="h-5 w-5" />
+                <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px] bg-foreground text-background">
+                  2
+                </Badge>
+              </Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input type="search" placeholder="Search..." className="w-[200px] pl-8 md:w-[250px] rounded-full bg-muted" />
+
+        {/* Search bar */}
+        {searchOpen && (
+          <div className="border-t py-4 px-4 md:px-6">
+            <div className="container max-w-xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search for products..."
+                  className="w-full pl-10 border-0 border-b rounded-none focus-visible:ring-0 bg-transparent"
+                  autoFocus
+                />
+              </div>
             </div>
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative"><Globe className="h-5 w-5" /></Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>English</DropdownMenuItem>
-              <DropdownMenuItem>Español</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link href="/login"><User className="h-5 w-5" /></Link>
-          </Button>
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link href="/cart">
-              <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-primary">3</Badge>
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
+        )}
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t p-4 space-y-4 bg-background">
-          <div className="relative mb-4">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input type="search" placeholder="Search..." className="w-full pl-8 rounded-full bg-muted" />
-          </div>
-          <nav className="flex flex-col space-y-4">
-            <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">Home</Link>
-            <Link href="/shop" className="text-sm font-medium transition-colors hover:text-primary">Shop</Link>
-            <details className="group">
-              <summary className="flex cursor-pointer items-center justify-between text-sm font-medium transition-colors hover:text-primary">Categories <ChevronDown className="h-4 w-4" /></summary>
-              <nav className="mt-2 ml-4 flex flex-col space-y-2">
-                <Link href="/category/women" className="text-sm transition-colors hover:text-primary">Women</Link>
-                <Link href="/category/men" className="text-sm transition-colors hover:text-primary">Men</Link>
-                <Link href="/category/accessories" className="text-sm transition-colors hover:text-primary">Accessories</Link>
-                <Link href="/category/shoes" className="text-sm transition-colors hover:text-primary">Shoes</Link>
-              </nav>
-            </details>
-            <Link href="/about" className="text-sm font-medium transition-colors hover:text-primary">About</Link>
-            <Link href="/contact" className="text-sm font-medium transition-colors hover:text-primary">Contact</Link>
+
+      {/* Mobile menu */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="w-full sm:max-w-sm">
+          <SheetHeader className="text-left">
+            <SheetTitle className="text-xl font-light tracking-[0.15em] uppercase">
+              STREETWEARZONE
+            </SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-6 mt-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-lg tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="border-t pt-6 mt-2">
+              <Link
+                href="/login"
+                className="text-lg tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Account
+              </Link>
+            </div>
           </nav>
-        </div>
-      )}
+        </SheetContent>
+      </Sheet>
     </header>
   )
 }
