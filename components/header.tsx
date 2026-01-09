@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ShoppingBag, Search, User, Menu, X, Heart } from "lucide-react"
+import { ShoppingBag, Search, User, Menu, Heart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,22 +19,33 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
 
   const navLinks = [
-    { href: "/shop", label: "Shop All" },
-    { href: "/category/living", label: "Living" },
-    { href: "/category/bedroom", label: "Bedroom" },
-    { href: "/category/kitchen", label: "Kitchen" },
-    { href: "/category/decor", label: "Decor" },
-    { href: "/about", label: "About" },
+    { href: "/category/new", label: "New In" },
+    { href: "/category/women", label: "Women" },
+    { href: "/category/men", label: "Men" },
+    { href: "/category/accessories", label: "Accessories" },
+    { href: "/shop", label: "Sale" },
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      {/* Top announcement bar */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-wider">
-        FREE SHIPPING ON ORDERS OVER $150 | NEW ARRIVALS WEEKLY
+    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
+      {/* Marquee announcement */}
+      <div className="bg-foreground text-background overflow-hidden py-2">
+        <div className="animate-marquee whitespace-nowrap flex">
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">Free Express Shipping on Orders $200+</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">✦</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">New Season Arrivals</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">✦</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">Exclusive Member Rewards</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">✦</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">Free Express Shipping on Orders $200+</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">✦</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">New Season Arrivals</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">✦</span>
+          <span className="mx-8 text-xs tracking-[0.2em] uppercase">Exclusive Member Rewards</span>
+        </div>
       </div>
       
-      <div className="border-b">
+      <div className="border-b border-border/50">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           {/* Mobile menu button */}
           <Button
@@ -47,46 +58,48 @@ export default function Header() {
           </Button>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-xl md:text-2xl font-light tracking-[0.15em] uppercase">
-              STREETWEARZONE
+          <Link href="/" className="flex items-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+            <span className="text-2xl md:text-3xl font-semibold tracking-tight">
+              MODÉ
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm tracking-wide hover:text-muted-foreground transition-colors relative group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all group-hover:w-full" />
               </Link>
             ))}
           </nav>
 
           {/* Right icons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setSearchOpen(!searchOpen)}
+              className="hover:bg-transparent"
             >
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="hidden sm:flex" asChild>
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-transparent" asChild>
               <Link href="/login">
                 <User className="h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-transparent">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative" asChild>
+            <Button variant="ghost" size="icon" className="relative hover:bg-transparent" asChild>
               <Link href="/cart">
                 <ShoppingBag className="h-5 w-5" />
-                <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px] bg-foreground text-background">
+                <Badge className="absolute -right-1 -top-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[10px] bg-foreground text-background border-0">
                   2
                 </Badge>
               </Link>
@@ -96,14 +109,14 @@ export default function Header() {
 
         {/* Search bar */}
         {searchOpen && (
-          <div className="border-t py-4 px-4 md:px-6">
-            <div className="container max-w-xl mx-auto">
+          <div className="border-t border-border/50 py-4 px-4 md:px-6 bg-background">
+            <div className="container max-w-2xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
-                  placeholder="Search for products..."
-                  className="w-full pl-10 border-0 border-b rounded-none focus-visible:ring-0 bg-transparent"
+                  placeholder="Search for products, brands..."
+                  className="w-full pl-8 border-0 border-b border-foreground/20 rounded-none focus-visible:ring-0 bg-transparent text-base placeholder:text-muted-foreground/60"
                   autoFocus
                 />
               </div>
@@ -114,30 +127,44 @@ export default function Header() {
 
       {/* Mobile menu */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <SheetContent side="left" className="w-full sm:max-w-sm">
-          <SheetHeader className="text-left">
-            <SheetTitle className="text-xl font-light tracking-[0.15em] uppercase">
-              STREETWEARZONE
+        <SheetContent side="left" className="w-full sm:max-w-md border-0">
+          <SheetHeader className="text-left pb-8 border-b">
+            <SheetTitle className="text-2xl font-semibold tracking-tight">
+              MODÉ
             </SheetTitle>
           </SheetHeader>
-          <nav className="flex flex-col gap-6 mt-8">
+          <nav className="flex flex-col gap-0 mt-0">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-lg tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+                className="text-xl py-4 border-b border-border/50 hover:pl-2 transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="border-t pt-6 mt-2">
+            <div className="pt-8 flex flex-col gap-4">
               <Link
                 href="/login"
-                className="text-lg tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Account
+                Sign In / Register
+              </Link>
+              <Link
+                href="/about"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About Us
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
               </Link>
             </div>
           </nav>
