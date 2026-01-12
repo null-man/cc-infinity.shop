@@ -12,14 +12,14 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "MODÉ | Contemporary Fashion",
+  title: "ccInfinity | Contemporary Fashion",
   description: "Discover curated contemporary fashion. Minimal aesthetics, maximum style. Shop the latest trends in women's and men's clothing.",
-  metadataBase: new URL('https://mode-fashion.shop'),
+  metadataBase: new URL('https://cc-infinity.shop'),
   openGraph: {
-    title: "MODÉ | Contemporary Fashion",
+    title: "ccInfinity | Contemporary Fashion",
     description: "Discover curated contemporary fashion. Minimal aesthetics, maximum style.",
-    url: "https://mode-fashion.shop",
-    siteName: "MODÉ",
+    url: "https://cc-infinity.shop",
+    siteName: "ccInfinity",
     type: "website",
   },
 }

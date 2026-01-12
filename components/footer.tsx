@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="text-2xl font-semibold tracking-tight">
-              MODÉ
+              ccInfinity
             </Link>
             <p className="text-background/50 text-sm mt-4 leading-relaxed">
               Contemporary fashion for the modern individual. Curated with intention.
@@ -136,7 +136,7 @@ export default function Footer() {
         <div className="border-t border-background/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-background/40">
-              © {new Date().getFullYear()} MODÉ. All rights reserved.
+              © {new Date().getFullYear()} ccInfinity. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <span className="text-xs text-background/40">We accept</span>

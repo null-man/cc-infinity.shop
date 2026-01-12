@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
       <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
         <section>
           <h2 className="text-xl font-semibold mb-4">1. Introduction</h2>
-          <p className="text-muted-foreground">MODÉ ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our services.</p>
+          <p className="text-muted-foreground">ccInfinity ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our services.</p>
         </section>
 
         <section>

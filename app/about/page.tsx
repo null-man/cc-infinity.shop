@@ -11,8 +11,8 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[500px]">
         <Image
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&auto=format&fit=crop"
-          alt="MODÉ Studio"
+          src="/ai-images/about-hero.jpg"
+          alt="ccInfinity Studio"
           fill
           className="object-cover"
           priority
@@ -35,7 +35,7 @@ export default function AboutPage() {
               <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Our Mission</span>
               <h2 className="text-3xl md:text-4xl font-medium mt-2 mb-6">Less but Better</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Founded in 2020, MODÉ was born from a simple belief: fashion should be intentional. 
+                Founded in 2020, ccInfinity was born from a simple belief: fashion should be intentional. 
                 We create timeless pieces that transcend seasons, designed to be worn and loved for years.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
@@ -47,7 +47,7 @@ export default function AboutPage() {
               </Button>
             </div>
             <div className="relative aspect-[4/5]">
-              <Image src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&auto=format&fit=crop" alt="Our process" fill className="object-cover" />
+              <Image src="/ai-images/about-mission.jpg" alt="Our process" fill className="object-cover" />
             </div>
           </div>
         </div>

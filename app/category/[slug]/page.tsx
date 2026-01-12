@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { SlidersHorizontal, X, Heart, ShoppingBag } from "lucide-react"
+import { SlidersHorizontal, X, Heart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -13,33 +13,23 @@ import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { QuickAddButton } from "@/components/quick-add-button"
 
 const allProducts = [
-  { id: 1, name: "Oversized Wool Blazer", price: 289, image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop", category: "women", type: "Outerwear", isNew: true },
-  { id: 2, name: "Silk Midi Dress", price: 195, image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop", category: "women", type: "Dresses", isNew: true },
-  { id: 3, name: "Cashmere Knit Sweater", price: 245, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&auto=format&fit=crop", category: "women", type: "Knitwear" },
-  { id: 4, name: "Wide Leg Trousers", price: 165, image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop", category: "women", type: "Bottoms" },
-  { id: 5, name: "Tailored Wool Coat", price: 395, image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&auto=format&fit=crop", category: "women", type: "Outerwear" },
-  { id: 6, name: "Ribbed Tank Top", price: 45, image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop", category: "women", type: "Basics" },
-  { id: 7, name: "Satin Slip Skirt", price: 125, image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=800&auto=format&fit=crop", category: "women", type: "Bottoms" },
-  { id: 8, name: "Linen Blazer", price: 265, image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop", category: "women", type: "Outerwear", isNew: true },
-  { id: 9, name: "Cotton Poplin Shirt", price: 125, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop", category: "men", type: "Tops" },
-  { id: 10, name: "Linen Blend Shorts", price: 95, image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop", category: "men", type: "Bottoms" },
-  { id: 11, name: "Slim Fit Chinos", price: 135, image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop", category: "men", type: "Bottoms" },
-  { id: 12, name: "Merino Wool Sweater", price: 185, image: "https://images.unsplash.com/photo-1614975059251-992f11792b9f?w=800&auto=format&fit=crop", category: "men", type: "Knitwear", isNew: true },
-  { id: 13, name: "Leather Crossbody Bag", price: 175, originalPrice: 220, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop", category: "accessories", type: "Bags" },
-  { id: 14, name: "Minimal Gold Hoops", price: 85, image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&auto=format&fit=crop", category: "accessories", type: "Jewelry" },
-  { id: 15, name: "Structured Tote Bag", price: 225, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop", category: "accessories", type: "Bags" },
-  { id: 16, name: "Silk Scarf", price: 95, image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=800&auto=format&fit=crop", category: "accessories", type: "Scarves", isNew: true },
-  { id: 17, name: "Leather Belt", price: 75, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop", category: "accessories", type: "Belts" },
-  { id: 18, name: "Cashmere Beanie", price: 65, image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&auto=format&fit=crop", category: "accessories", type: "Hats", isNew: true },
+  { id: 1, name: "Oversized Wool Blazer", price: 289, image: "/ai-images/product-blazer.jpg", category: "women", type: "Outerwear", isNew: true },
+  { id: 2, name: "Silk Midi Dress", price: 195, image: "/ai-images/product-dress.jpg", category: "women", type: "Dresses", isNew: true },
+  { id: 3, name: "Cashmere Knit Sweater", price: 245, image: "/ai-images/product-sweater.jpg", category: "women", type: "Knitwear" },
+  { id: 4, name: "Wide Leg Trousers", price: 165, image: "/ai-images/product-trousers.jpg", category: "women", type: "Bottoms" },
+  { id: 5, name: "Tailored Wool Coat", price: 395, image: "/ai-images/trending-coat.jpg", category: "women", type: "Outerwear" },
+  { id: 6, name: "Ribbed Tank Top", price: 45, image: "/ai-images/trending-tank.jpg", category: "women", type: "Basics" },
+  { id: 7, name: "Cotton Poplin Shirt", price: 125, image: "/ai-images/trending-shirt.jpg", category: "men", type: "Tops" },
+  { id: 8, name: "Linen Blend Shorts", price: 95, image: "/ai-images/trending-shorts.jpg", category: "men", type: "Bottoms" },
 ]
 
 const categoryInfo: Record<string, { title: string; description: string; image: string }> = {
-  women: { title: "Women", description: "Discover contemporary pieces designed for the modern woman. From tailored essentials to statement pieces.", image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&auto=format&fit=crop" },
-  men: { title: "Men", description: "Refined menswear that balances classic style with modern sensibility. Effortless sophistication.", image: "https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=1600&auto=format&fit=crop" },
-  accessories: { title: "Accessories", description: "Complete your look with our curated selection of bags, jewelry, and finishing touches.", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=1600&auto=format&fit=crop" },
-  new: { title: "New Arrivals", description: "Be the first to shop our latest drops. Fresh styles added weekly.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop" },
+  women: { title: "Women", description: "Discover contemporary pieces designed for the modern woman. From tailored essentials to statement pieces.", image: "/ai-images/category-women.jpg" },
+  men: { title: "Men", description: "Refined menswear that balances classic style with modern sensibility. Effortless sophistication.", image: "/ai-images/category-men.jpg" },
+  new: { title: "New Arrivals", description: "Be the first to shop our latest drops. Fresh styles added weekly.", image: "/ai-images/editorial-banner.jpg" },
 }
 
 export default function CategoryPage() {
@@ -152,23 +142,21 @@ export default function CategoryPage() {
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {filteredProducts.map(product => (
-                  <Link key={product.id} href="/shop" className="group product-card">
+                  <div key={product.id} className="group product-card">
                     <div className="aspect-[3/4] relative overflow-hidden bg-muted mb-4">
-                      <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
+                      <Link href="/shop">
+                        <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
+                      </Link>
                       {product.isNew && <span className="absolute top-3 left-3 text-[10px] tracking-wider uppercase bg-foreground text-background px-2 py-1">New</span>}
-                      {product.originalPrice && <span className="absolute top-3 left-3 text-[10px] tracking-wider uppercase bg-red-500 text-white px-2 py-1">Sale</span>}
                       <div className="absolute top-3 right-3"><button className="p-2 bg-white/90 hover:bg-white transition-colors"><Heart className="h-4 w-4" /></button></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-3 quick-add"><Button size="sm" className="w-full rounded-none text-xs"><ShoppingBag className="h-3 w-3 mr-2" />Quick Add</Button></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-3 quick-add"><QuickAddButton product={{ id: product.id, name: product.name, price: product.price, image: product.image, category: product.type }} /></div>
                     </div>
-                    <div className="space-y-1">
+                    <Link href="/shop" className="space-y-1 block">
                       <p className="text-[11px] text-muted-foreground tracking-wider uppercase">{product.type}</p>
                       <h3 className="text-sm font-medium">{product.name}</h3>
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm">${product.price}</p>
-                        {product.originalPrice && <p className="text-sm text-muted-foreground line-through">${product.originalPrice}</p>}
-                      </div>
-                    </div>
-                  </Link>
+                      <p className="text-sm">${product.price}</p>
+                    </Link>
+                  </div>
                 ))}
               </div>
             )}

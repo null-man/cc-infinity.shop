@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ShoppingBag, Search, User, Menu, Heart } from "lucide-react"
 
@@ -13,17 +13,23 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+import { useCartStore } from "@/lib/cart-store"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const items = useCartStore((state) => state.items)
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navLinks = [
     { href: "/category/new", label: "New In" },
     { href: "/category/women", label: "Women" },
     { href: "/category/men", label: "Men" },
-    { href: "/category/accessories", label: "Accessories" },
-    { href: "/shop", label: "Sale" },
   ]
 
   return (
@@ -60,7 +66,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
             <span className="text-2xl md:text-3xl font-semibold tracking-tight">
-              MODÉ
+              ccInfinity
             </span>
           </Link>
 
@@ -99,9 +105,11 @@ export default function Header() {
             <Button variant="ghost" size="icon" className="relative hover:bg-transparent" asChild>
               <Link href="/cart">
                 <ShoppingBag className="h-5 w-5" />
-                <Badge className="absolute -right-1 -top-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[10px] bg-foreground text-background border-0">
-                  2
-                </Badge>
+                {mounted && totalItems > 0 && (
+                  <Badge className="absolute -right-1 -top-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[10px] bg-foreground text-background border-0">
+                    {totalItems}
+                  </Badge>
+                )}
               </Link>
             </Button>
           </div>
@@ -130,7 +138,7 @@ export default function Header() {
         <SheetContent side="left" className="w-full sm:max-w-md border-0">
           <SheetHeader className="text-left pb-8 border-b">
             <SheetTitle className="text-2xl font-semibold tracking-tight">
-              MODÉ
+              ccInfinity
             </SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col gap-0 mt-0">

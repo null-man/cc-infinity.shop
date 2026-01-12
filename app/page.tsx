@@ -2,28 +2,23 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Heart, ShoppingBag } from "lucide-react"
+import { ArrowRight, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { QuickAddButton } from "@/components/quick-add-button"
 
 export default function HomePage() {
   const categories = [
     {
       name: "Women",
       slug: "women",
-      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop",
+      image: "/ai-images/category-women.jpg",
       count: "240+ styles"
     },
     {
       name: "Men",
       slug: "men", 
-      image: "https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=800&auto=format&fit=crop",
+      image: "/ai-images/category-men.jpg",
       count: "180+ styles"
-    },
-    {
-      name: "Accessories",
-      slug: "accessories",
-      image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&auto=format&fit=crop",
-      count: "120+ items"
     },
   ]
 
@@ -32,7 +27,7 @@ export default function HomePage() {
       id: 1,
       name: "Oversized Wool Blazer",
       price: 289,
-      image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop",
+      image: "/ai-images/product-blazer.jpg",
       category: "Outerwear",
       isNew: true
     },
@@ -40,7 +35,7 @@ export default function HomePage() {
       id: 2,
       name: "Silk Midi Dress",
       price: 195,
-      image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop",
+      image: "/ai-images/product-dress.jpg",
       category: "Dresses",
       isNew: true
     },
@@ -48,7 +43,7 @@ export default function HomePage() {
       id: 3,
       name: "Cashmere Knit Sweater",
       price: 245,
-      image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&auto=format&fit=crop",
+      image: "/ai-images/product-sweater.jpg",
       category: "Knitwear",
       isNew: true
     },
@@ -56,7 +51,7 @@ export default function HomePage() {
       id: 4,
       name: "Wide Leg Trousers",
       price: 165,
-      image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop",
+      image: "/ai-images/product-trousers.jpg",
       category: "Bottoms",
       isNew: true
     },
@@ -65,56 +60,32 @@ export default function HomePage() {
   const trending = [
     {
       id: 5,
-      name: "Leather Crossbody Bag",
-      price: 175,
-      originalPrice: 220,
-      image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop",
-      category: "Bags"
-    },
-    {
-      id: 6,
-      name: "Minimal Gold Hoops",
-      price: 85,
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&auto=format&fit=crop",
-      category: "Jewelry"
-    },
-    {
-      id: 7,
       name: "Cotton Poplin Shirt",
       price: 125,
-      image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop",
+      image: "/ai-images/trending-shirt.jpg",
       category: "Tops"
     },
     {
-      id: 8,
+      id: 6,
       name: "Tailored Wool Coat",
       price: 395,
-      image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&auto=format&fit=crop",
+      image: "/ai-images/trending-coat.jpg",
       category: "Outerwear"
     },
     {
-      id: 9,
+      id: 7,
       name: "Ribbed Tank Top",
       price: 45,
-      image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop",
+      image: "/ai-images/trending-tank.jpg",
       category: "Basics"
     },
     {
-      id: 10,
+      id: 8,
       name: "Linen Blend Shorts",
       price: 95,
-      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop",
+      image: "/ai-images/trending-shorts.jpg",
       category: "Bottoms"
     },
-  ]
-
-  const instagramFeed = [
-    "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&auto=format&fit=crop",
   ]
 
   return (
@@ -123,7 +94,7 @@ export default function HomePage() {
       <section className="grid md:grid-cols-2 min-h-[90vh]">
         <div className="relative h-[50vh] md:h-auto">
           <Image
-            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&auto=format&fit=crop"
+            src="/ai-images/hero-main.jpg"
             alt="Fashion editorial"
             fill
             className="object-cover"
@@ -166,7 +137,7 @@ export default function HomePage() {
               View All <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {categories.map((category) => (
               <Link key={category.slug} href={`/category/${category.slug}`} className="group relative aspect-[3/4] overflow-hidden">
                 <Image src={category.image} alt={category.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -195,21 +166,23 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {newArrivals.map((product) => (
-              <Link key={product.id} href="/shop" className="group product-card">
+              <div key={product.id} className="group product-card">
                 <div className="aspect-[3/4] relative overflow-hidden bg-muted mb-4">
-                  <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
+                  <Link href="/shop">
+                    <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
+                  </Link>
                   {product.isNew && <span className="absolute top-3 left-3 text-[10px] tracking-wider uppercase bg-foreground text-background px-2 py-1">New</span>}
                   <div className="absolute top-3 right-3"><button className="p-2 bg-white/90 hover:bg-white transition-colors"><Heart className="h-4 w-4" /></button></div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 quick-add">
-                    <Button size="sm" className="w-full rounded-none text-xs"><ShoppingBag className="h-3 w-3 mr-2" />Quick Add</Button>
+                    <QuickAddButton product={product} />
                   </div>
                 </div>
-                <div className="space-y-1">
+                <Link href="/shop" className="space-y-1 block">
                   <p className="text-[11px] text-muted-foreground tracking-wider uppercase">{product.category}</p>
                   <h3 className="text-sm font-medium">{product.name}</h3>
                   <p className="text-sm">${product.price}</p>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -217,7 +190,7 @@ export default function HomePage() {
 
       {/* Editorial Banner */}
       <section className="relative h-[70vh] md:h-[80vh]">
-        <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop" alt="Editorial" fill className="object-cover" />
+        <Image src="/ai-images/editorial-banner.jpg" alt="Editorial" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
           <div className="max-w-2xl px-4">
@@ -239,26 +212,24 @@ export default function HomePage() {
             </div>
             <Link href="/shop" className="text-sm flex items-center gap-2 hover:gap-3 transition-all">Shop All <ArrowRight className="h-4 w-4" /></Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {trending.map((product) => (
-              <Link key={product.id} href="/shop" className="group product-card">
+              <div key={product.id} className="group product-card">
                 <div className="aspect-[3/4] relative overflow-hidden bg-muted mb-4">
-                  <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
-                  {product.originalPrice && <span className="absolute top-3 left-3 text-[10px] tracking-wider uppercase bg-red-500 text-white px-2 py-1">Sale</span>}
+                  <Link href="/shop">
+                    <Image src={product.image} alt={product.name} fill className="object-cover product-image" />
+                  </Link>
                   <div className="absolute top-3 right-3"><button className="p-2 bg-white/90 hover:bg-white transition-colors"><Heart className="h-4 w-4" /></button></div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 quick-add">
-                    <Button size="sm" className="w-full rounded-none text-xs"><ShoppingBag className="h-3 w-3 mr-2" />Quick Add</Button>
+                    <QuickAddButton product={product} />
                   </div>
                 </div>
-                <div className="space-y-1">
+                <Link href="/shop" className="space-y-1 block">
                   <p className="text-[11px] text-muted-foreground tracking-wider uppercase">{product.category}</p>
                   <h3 className="text-sm font-medium">{product.name}</h3>
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm">${product.price}</p>
-                    {product.originalPrice && <p className="text-sm text-muted-foreground line-through">${product.originalPrice}</p>}
-                  </div>
-                </div>
-              </Link>
+                  <p className="text-sm">${product.price}</p>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -283,28 +254,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Instagram Feed */}
-      <section className="py-20 md:py-28">
-        <div className="container px-4 md:px-6">
-          <div className="text-center mb-10">
-            <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Follow Us</span>
-            <h2 className="text-3xl md:text-4xl font-medium mt-2">@mode.fashion</h2>
-            <p className="text-muted-foreground mt-2">Share your style with #MODÉstyle</p>
-          </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-            {instagramFeed.map((post, i) => (
-              <a key={i} href="#" className="relative aspect-square overflow-hidden group ins-grid-item">
-                <Image src={post} alt={`Instagram post ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
     </main>
   )
 }

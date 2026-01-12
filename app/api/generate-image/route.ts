@@ -1,83 +1,62 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server';
 
-// 配置你的 AI 图片生成服务
-// 支持: openai (DALL-E), stability, replicate 等
-const AI_PROVIDER = process.env.AI_IMAGE_PROVIDER || 'openai'
-const API_KEY = process.env.AI_IMAGE_API_KEY || ''
+interface GenerateImageRequest {
+  prompt: string;
+  imageInput?: string[];
+  aspectRatio?: string;
+  resolution?: string;
+  model?: string;
+  callbackUrl?: string;
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, size = '1024x1024', style = 'vivid' } = await request.json()
-
-    if (!prompt) {
-      return NextResponse.json({ error: 'Prompt is required' }, { status: 400 })
+    const apiKey = process.env.RUXA_API_KEY;
+    
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: '服务器未配置 API key' },
+        { status: 500 }
+      );
     }
 
-    if (!API_KEY) {
-      return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
+    const body: GenerateImageRequest = await request.json();
+
+    const payload = {
+      callback_url: body.callbackUrl || 'https://webhook.site/7ea5c0ee-296b-496d-9842-eacfac189931',
+      input: {
+        prompt: body.prompt,
+        image_input: body.imageInput || [],
+        aspect_ratio: body.aspectRatio || '1:1',
+        resolution: body.resolution || '4K',
+      },
+      model: body.model || 'google/nano-banana-pro',
+    };
+
+    const response = await fetch('https://api.ruxa.ai/api/v1/tasks/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      return NextResponse.json(
+        { error: `API 请求失败: ${errorText}` },
+        { status: response.status }
+      );
     }
 
-    let imageUrl: string
-
-    if (AI_PROVIDER === 'openai') {
-      // OpenAI DALL-E 3
-      const response = await fetch('https://api.openai.com/v1/images/generations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'dall-e-3',
-          prompt,
-          n: 1,
-          size,
-          style,
-        }),
-      })
-
-      const data = await response.json()
-      if (data.error) {
-        return NextResponse.json({ error: data.error.message }, { status: 400 })
-      }
-      imageUrl = data.data[0].url
-
-    } else if (AI_PROVIDER === 'stability') {
-      // Stability AI
-      const response = await fetch('https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify({
-          text_prompts: [{ text: prompt }],
-          cfg_scale: 7,
-          height: 1024,
-          width: 1024,
-          samples: 1,
-        }),
-      })
-
-      const data = await response.json()
-      if (data.message) {
-        return NextResponse.json({ error: data.message }, { status: 400 })
-      }
-      // Stability 返回 base64，需要转换
-      imageUrl = `data:image/png;base64,${data.artifacts[0].base64}`
-
-    } else {
-      return NextResponse.json({ error: 'Unsupported AI provider' }, { status: 400 })
-    }
-
-    return NextResponse.json({ 
-      success: true, 
-      imageUrl,
-      prompt 
-    })
-
+    const result = await response.json();
+    return NextResponse.json(result);
   } catch (error) {
-    console.error('Image generation error:', error)
-    return NextResponse.json({ error: 'Failed to generate image' }, { status: 500 })
+    console.error('生成图片失败:', error);
+    return NextResponse.json(
+      { error: '生成图片失败' },
+      { status: 500 }
+    );
   }
 }
