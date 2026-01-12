@@ -16,12 +16,12 @@ export default function TermsPage() {
       <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
         <section>
           <h2 className="text-xl font-semibold mb-4">1. Acceptance of Terms</h2>
-          <p className="text-muted-foreground">Welcome to awesomeproducts-world. By accessing or using our website, you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, please do not use our website.</p>
+          <p className="text-muted-foreground">Welcome to MODÉ. By accessing or using our website, you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, please do not use our website.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">2. Service Description</h2>
-          <p className="text-muted-foreground">awesomeproducts-world is an online fashion retail platform offering clothing, accessories, and related products. We reserve the right to modify, suspend, or discontinue services at any time without notice.</p>
+          <p className="text-muted-foreground">MODÉ is an online fashion retail platform offering clothing, accessories, and related products. We reserve the right to modify, suspend, or discontinue services at any time without notice.</p>
         </section>
 
         <section>
@@ -77,15 +77,14 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold mb-4">8. Limitation of Liability</h2>
-          <p className="text-muted-foreground">To the maximum extent permitted by law, awesomeproducts-world shall not be liable for any indirect, incidental, or consequential damages arising from use of our website. Our total liability shall not exceed the amount you paid for the products in question.</p>
+          <p className="text-muted-foreground">To the maximum extent permitted by law, MODÉ shall not be liable for any indirect, incidental, or consequential damages arising from use of our website. Our total liability shall not exceed the amount you paid for the products in question.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">9. Contact Us</h2>
           <div className="text-muted-foreground">
-            <p>Email: legal@awesomeproducts-world.com</p>
-            <p>Phone: (555) 123-4567</p>
-            <p>Address: 123 Fashion Avenue, New York, NY 10001</p>
+            <p>Email: legal@cc-infinity.shop</p>
+            <p>Address: Online Store</p>
           </div>
         </section>
       </div>

@@ -65,8 +65,7 @@ export default function CookiePolicyPage() {
           <h2 className="text-xl font-semibold mb-4">6. Contact Us</h2>
           <p className="text-muted-foreground">If you have questions about our Cookie Policy, please contact us:</p>
           <div className="text-muted-foreground mt-2">
-            <p>Email: privacy@awesomeproducts-world.com</p>
-            <p>Phone: (555) 123-4567</p>
+            <p>Email: privacy@cc-infinity.shop</p>
           </div>
         </section>
       </div>

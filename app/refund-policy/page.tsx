@@ -16,7 +16,7 @@ export default function RefundPolicyPage() {
       <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
         <section>
           <h2 className="text-xl font-semibold mb-4">1. Return Policy Overview</h2>
-          <p className="text-muted-foreground">awesomeproducts-world is committed to your satisfaction. If you're not happy with your purchase, we offer a 30-day return policy. Please read the following terms carefully.</p>
+          <p className="text-muted-foreground">MODÉ is committed to your satisfaction. If you're not happy with your purchase, we offer a 30-day return policy. Please read the following terms carefully.</p>
         </section>
 
         <section>
@@ -66,7 +66,7 @@ export default function RefundPolicyPage() {
         <section>
           <h2 className="text-xl font-semibold mb-4">6. Shipping Costs</h2>
           <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-            <li><strong>Defective Items:</strong> Return shipping paid by awesomeproducts-world</li>
+            <li><strong>Defective Items:</strong> Return shipping paid by MODÉ</li>
             <li><strong>Change of Mind:</strong> Return shipping paid by customer</li>
             <li><strong>Free Shipping Orders:</strong> Original shipping cost may be deducted from refund</li>
           </ul>
@@ -80,9 +80,8 @@ export default function RefundPolicyPage() {
         <section>
           <h2 className="text-xl font-semibold mb-4">8. Contact Us</h2>
           <div className="text-muted-foreground">
-            <p>Customer Service: (555) 123-4567 (Mon-Fri 9am-6pm)</p>
-            <p>Email: returns@awesomeproducts-world.com</p>
-            <p>Return Address: awesomeproducts-world Returns Center, 456 Warehouse Blvd, New York, NY 10002</p>
+            <p>Email: returns@cc-infinity.shop</p>
+            <p>Please contact us via email for return instructions.</p>
           </div>
         </section>
       </div>

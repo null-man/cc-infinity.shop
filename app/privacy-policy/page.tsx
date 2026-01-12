@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
       <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
         <section>
           <h2 className="text-xl font-semibold mb-4">1. Introduction</h2>
-          <p className="text-muted-foreground">awesomeproducts-world ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our services.</p>
+          <p className="text-muted-foreground">MODÉ ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our services.</p>
         </section>
 
         <section>
@@ -75,9 +75,8 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-xl font-semibold mb-4">7. Contact Us</h2>
           <p className="text-muted-foreground">If you have questions about this Privacy Policy, please contact us at:</p>
           <div className="text-muted-foreground mt-2">
-            <p>Email: privacy@awesomeproducts-world.com</p>
-            <p>Phone: (555) 123-4567</p>
-            <p>Address: 123 Fashion Avenue, New York, NY 10001</p>
+            <p>Email: privacy@cc-infinity.shop</p>
+            <p>Address: Online Store</p>
           </div>
         </section>
       </div>

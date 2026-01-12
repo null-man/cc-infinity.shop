@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { Mail, Clock } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -74,16 +74,8 @@ export default function ContactPage() {
               <h2 className="text-xl font-semibold mb-6">Contact Information</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><MapPin className="h-5 w-5" /></div>
-                  <div><h3 className="font-medium">Address</h3><address className="not-italic text-muted-foreground">123 Fashion Avenue<br />New York, NY 10001<br />United States</address></div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Phone className="h-5 w-5" /></div>
-                  <div><h3 className="font-medium">Phone</h3><p className="text-muted-foreground"><a href="tel:+15551234567" className="hover:text-primary">(555) 123-4567</a></p><p className="text-muted-foreground"><a href="tel:+18005551234" className="hover:text-primary">1-800-555-1234</a></p></div>
-                </div>
-                <div className="flex items-start gap-3">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Mail className="h-5 w-5" /></div>
-                  <div><h3 className="font-medium">Email</h3><p className="text-muted-foreground"><a href="mailto:hello@awesomeproducts-world.com" className="hover:text-primary">hello@awesomeproducts-world.com</a></p><p className="text-muted-foreground"><a href="mailto:support@awesomeproducts-world.com" className="hover:text-primary">support@awesomeproducts-world.com</a></p></div>
+                  <div><h3 className="font-medium">Email</h3><p className="text-muted-foreground"><a href="mailto:hello@cc-infinity.shop" className="hover:text-primary">hello@cc-infinity.shop</a></p><p className="text-muted-foreground"><a href="mailto:support@cc-infinity.shop" className="hover:text-primary">support@cc-infinity.shop</a></p></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><Clock className="h-5 w-5" /></div>
